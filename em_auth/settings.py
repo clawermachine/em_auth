@@ -92,27 +92,17 @@ WSGI_APPLICATION = 'em_auth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "em_auth_db",
-        "USER": 'postgres',
-        "PASSWORD": '123456',
-        "HOST": 'localhost',
-        "PORT": 8000
+        "USER": "em_auth_user",
+        "PASSWORD": "em_auth_pass",
+        "HOST": "db",
+        "PORT": "5432",
     }
 }
-'''
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "em_auth_db",
-        "USER": "em_auth_user", #'postgres'
-        "PASSWORD": "em_auth_pass", #'123456'
-        "HOST": "db", #'localhost'
-        "PORT": "5432", #8000
-    }
-}'''
 
 
 # Password validation
