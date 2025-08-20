@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: em_auth_db
+    environment:
+      POSTGRES_DB: em_auth_db
+      POSTGRES_USER: em_auth_user
+      POSTGRES_PASSWORD: em_auth_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: em_auth
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn em_auth.wsgi:application --bind 0.0.0.0:8080"
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
